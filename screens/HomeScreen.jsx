@@ -7,10 +7,9 @@ import {
   SegmentedButtons,
 } from "react-native-paper";
 import Carousel from "react-native-snap-carousel";
-import { sliderData } from "../model/data";
+import { freeGames, paidGames, sliderData } from "../model/data";
 import BannerSlider from "../components/BannerSlider";
 import { windowWidth } from "../utils/Dimensions";
-import { reloadAppAsync } from "expo";
 import GameList from "../components/GameList";
 
 const HomeScreen = () => {
@@ -29,7 +28,7 @@ const HomeScreen = () => {
           <Text style={styles.textHeader}> Hello</Text>
           <Avatar.Image
             source={require("../assets/images/user-profile.jpg")}
-            size={24}
+            size={44}
           />
         </View>
 
@@ -41,6 +40,7 @@ const HomeScreen = () => {
             placeholder="Seach"
             onChangeText={(text) => setText(text)}
             style={{ backgroundColor: "#fff" }}
+            textColor="black"
             left={<TextInput.Icon size={24} icon="magnify" />}
             outlineColor="pink"
           />
@@ -48,11 +48,12 @@ const HomeScreen = () => {
 
         {/* title */}
         <View style={styles.title}>
-          <Text>Upcoming games</Text>
+          <Text style={styles.textTitle}>Upcoming games</Text>
           <Button
             mode="text"
             textColor="magenta"
             onPress={() => console.log("Pressed")}
+            
           >
             See All
           </Button>
@@ -104,9 +105,13 @@ const HomeScreen = () => {
         {/* game list based on filtered tab  */}
         <View>
           {tabValue === "free" ? (
-            <GameList/>
+            freeGames.map((item) => (
+              <GameList key={item.id} picture={item.poster} title={item.title} info = {item.subtitle} isFree={item.isFree} price = {item.price ?? null} />
+            ))
           ) : (
-            <Text>Paid Game</Text>
+            paidGames.map((item) => (
+              <GameList key={item.id} picture={item.poster} title={item.title} info = {item.subtitle} isFree={item.isFree} price = {item.price} />
+            ))
           )}
         </View>
       </ScrollView>
@@ -128,8 +133,8 @@ const styles = StyleSheet.create({
   },
 
   textHeader: {
-    fontSize: 20,
-    fontFamily: "Roboto-Medium",
+    fontSize: 26,
+    fontFamily: "monospace",
   },
 
   searchBar: {
@@ -140,7 +145,6 @@ const styles = StyleSheet.create({
   title: {
     flexDirection: "row",
     justifyContent: "space-between",
-    margin: 10,
     padding: 10,
   },
 
@@ -149,4 +153,13 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 0,
   },
+
+  
+  textTitle: {
+    fontSize: 20,
+    fontWeight: "100",
+    fontFamily: "serif",
+    textTransform:"uppercase",
+    paddingTop: 8
+},
 });

@@ -3,17 +3,20 @@ import React from 'react'
 import { Button, List } from 'react-native-paper'
 import { StyleSheet } from 'react-native'
 
-const GameList = () => {
+const GameList = ({picture, title, info, isFree, price}) => {
   return (
     <View style={styles.container}>
         <View style={styles.itemContainer}>
-            <Image source = {require('../assets/images/god-of-war.jpeg')} style={styles.imageContainer}/>
+            <Image source = {picture} style={styles.imageContainer} />
             <View>
-                <Text style = { styles.textTitle}>title</Text>
-                <Text style = { styles.textGame}>game name</Text>
+                <Text style = { styles.textTitle}>{info}</Text>
+                <Text style = { styles.textGame}>{title}</Text>
             </View>
         </View>
-        <Button style={styles.buttonContainer} mode='contained-tonal' buttonColor='#0aada8' compact={true} labelStyle={styles.textButton} >Play</Button>
+        <Button style={styles.buttonContainer} mode='contained-tonal' contentStyle= {styles.textPosition} buttonColor='#0aada8' compact={true} labelStyle={styles.textButton}>
+            {isFree === "Yes" ? "Play" : price}
+        </Button>
+       
     </View>
   )
 }
@@ -26,6 +29,13 @@ const styles = StyleSheet.create({
         marginBottom:20,
 
     },
+    imageContainer: {
+        width: 55,
+        height: 55,
+        borderRadius: 10,
+        marginRight: 8
+    },
+
     itemContainer : {
         flexDirection:'row',
         alignItems:'center',
@@ -38,23 +48,24 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginRight: 8
     },
+    
     buttonContainer: {
-        padding: 10,
         width: 100,
         borderRadius:10,
+        height: 40,
     },
 
     textButton : {
         fontSize: 18,
-        fontStyle: "italic",
-        fontWeight: "bold",
-        fontFamily: "Roboto"
+        fontFamily: "Roboto",
+
     },
 
     textTitle: {
         fontSize: 14,
         fontWeight: "100",
-        fontFamily: "serif"
+        fontFamily: "serif",
+        textTransform:"uppercase"
     },
 
     textGame: {
