@@ -19,7 +19,7 @@ const IndexScreen = ({ navigation }) => {
       <View style={{marginBottom:50, width: '90%'}}>
         <Button
           icon="arrow-right"
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => navigation.navigate("Login")}
           contentStyle={styles.button}
           buttonColor="#AD40AF"
           mode="contained"
