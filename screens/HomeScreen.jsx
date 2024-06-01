@@ -1,18 +1,21 @@
-import { StyleSheet, Text, View, SafeAreaView, ScrollView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import {
   Avatar,
   TextInput,
   Button,
   SegmentedButtons,
+  Icon
 } from "react-native-paper";
 import Carousel from "react-native-snap-carousel";
+
+
 import { freeGames, paidGames, sliderData } from "../model/data";
 import BannerSlider from "../components/BannerSlider";
 import { windowWidth } from "../utils/Dimensions";
 import GameList from "../components/GameList";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   const [text, setText] = React.useState("");
 
   const [tabValue, setTabValue] = React.useState("free");
@@ -26,10 +29,15 @@ const HomeScreen = () => {
         {/* Top Component */}
         <View style={styles.headerComponent}>
           <Text style={styles.textHeader}> Hello</Text>
-          <Avatar.Image
-            source={require("../assets/images/user-profile.jpg")}
-            size={44}
-          />
+          <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+            <Avatar.Image
+              source={require("../assets/images/user-profile.jpg")}
+              size={44}
+              
+            />
+          </TouchableOpacity>
+
+         
         </View>
 
         {/* Search Bar */}
@@ -87,7 +95,6 @@ const HomeScreen = () => {
                   backgroundColor: tabValue === "free" ? "#D2649A" : "#50727B",
                 },
                 showSelectedCheck: true,
-                onPress: console.log(tabValue),
               },
               {
                 value: "paid",
@@ -96,7 +103,6 @@ const HomeScreen = () => {
                   backgroundColor: tabValue !== "free" ? "#D2649A" : "#50727B",
                 },
                 showSelectedCheck: true,
-                onPress: console.log(tabValue),
               },
             ]}
           />
@@ -104,15 +110,16 @@ const HomeScreen = () => {
 
         {/* game list based on filtered tab  */}
         <View>
-          {tabValue === "free" ? (
+        {tabValue === "free" ? (
             freeGames.map((item) => (
-              <GameList key={item.id} picture={item.poster} title={item.title} info = {item.subtitle} isFree={item.isFree} price = {item.price ?? null} />
+              <GameList key={item.id} picture={item.poster} title={item.title} info = {item.subtitle} isFree={item.isFree} price = {item.price ?? null} onPress={() => navigation.navigate("GameDetails", {data:item})} />
             ))
           ) : (
             paidGames.map((item) => (
-              <GameList key={item.id} picture={item.poster} title={item.title} info = {item.subtitle} isFree={item.isFree} price = {item.price} />
+              <GameList key={item.id} picture={item.poster} title={item.title} info = {item.subtitle} isFree={item.isFree} price = {item.price} onPress={() => navigation.navigate("GameDetails", {data:item})}/>
             ))
           )}
+          
         </View>
       </ScrollView>
     </SafeAreaView>

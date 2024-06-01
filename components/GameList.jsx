@@ -1,9 +1,9 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
-import { Button, List } from 'react-native-paper'
+import { Button } from 'react-native-paper'
 import { StyleSheet } from 'react-native'
 
-const GameList = ({picture, title, info, isFree, price}) => {
+const GameList = ({picture, title, info, isFree, price, onPress}) => {
   return (
     <View style={styles.container}>
         <View style={styles.itemContainer}>
@@ -13,7 +13,7 @@ const GameList = ({picture, title, info, isFree, price}) => {
                 <Text style = { styles.textGame}>{title}</Text>
             </View>
         </View>
-        <Button style={styles.buttonContainer} mode='contained-tonal' contentStyle= {styles.textPosition} buttonColor='#0aada8' compact={true} labelStyle={styles.textButton}>
+        <Button onPress={onPress} style={styles.buttonContainer} mode='contained-tonal' contentStyle= {styles.textPosition} buttonColor='#0aada8' compact={true} labelStyle={styles.textButton}>
             {isFree === "Yes" ? "Play" : price}
         </Button>
        

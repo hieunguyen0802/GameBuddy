@@ -5,11 +5,11 @@ import { windowWidth } from "../utils/Dimensions";
 
 import CustomDrawer from "../components/CustomDrawer";
 
-import HomeScreen from "../screens/HomeScreen";
-import MessageScreen from "../screens/MessageScreen";
-import MomentScreen from "../screens/MomentScreen";
-import SettingScreen from "../screens/SettingScreen";
-import ProfileScreen from "../screens/ProfileScreen";
+import MessageScreen from "../screens/SideBarDrawer/MessageScreen";
+import MomentScreen from "../screens/SideBarDrawer/MomentScreen";
+import SettingScreen from "../screens/SideBarDrawer/SettingScreen";
+import ProfileScreen from "../screens/SideBarDrawer/ProfileScreen";
+import TabNavigator from "./TabNavigator";
 
 const Drawer = createDrawerNavigator();
 
@@ -32,7 +32,7 @@ const AppStack = () => {
     >
       <Drawer.Screen
         name="Home"
-        component={HomeScreen}
+        component={TabNavigator}
         options={{
           drawerIcon: ({ color }) => (
             <Icon source="home-outline" size={32} color={color} />
@@ -81,6 +81,4 @@ const AppStack = () => {
 
 export default AppStack;
 
-const styles = StyleSheet.create({
-  drawerText: {},
-});
+
