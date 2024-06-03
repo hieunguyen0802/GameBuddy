@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import IndexScreen from "../screens/IndexScreen";
-import LoginScreen from "../screens/LoginScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+import IndexScreen from "../screens/IndexScreen";
+import LoginScreen from "../screens/AuthScreens/LoginScreen";
+import RegisterScreen from "../screens/AuthScreens/RegisterScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +20,7 @@ const AuthStack = () => {
     >
       <Stack.Screen name="Index" component={IndexScreen} />
       <Stack.Screen name="Login" component={LoginScreen} />
+      <Stack.Screen name="Register" component={RegisterScreen} />
     </Stack.Navigator>
   );
 };
