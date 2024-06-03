@@ -10,8 +10,8 @@ export default function App() {
     <NavigationContainer>
       <PaperProvider>
         <SafeAreaProvider>
-          <AppStack />
-          {/* <AuthStack /> */}
+          {/* <AppStack /> */}
+          <AuthStack />
         </SafeAreaProvider>
       </PaperProvider>
     </NavigationContainer>
