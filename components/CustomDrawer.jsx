@@ -1,13 +1,18 @@
  import { View, Text, StyleSheet, ImageBackground } from "react-native";
-import React from "react";
+import React, {useContext} from "react";
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
 import { Avatar } from "react-native-paper";
 import { Icon, Button } from "react-native-paper";
+import { AuthContext } from "../context/AuthContext";
+
 
 const CustomDrawer = (props) => {
+
+  const {logout} = useContext(AuthContext)
+
   return (
     <View style={styles.container}>
       <DrawerContentScrollView
@@ -49,7 +54,7 @@ const CustomDrawer = (props) => {
           mode="text"
           contentStyle={styles.buttonBottomStyle}
           labelStyle={styles.buttonTextDrawer}
-          onPress={() => console.log("Pressed")}
+          onPress={logout}
         >
           Sign out
         </Button>

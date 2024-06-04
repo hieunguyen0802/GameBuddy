@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     color: "#20315f",
-    fontFamily: "Inter-Bold",
+    fontFamily: "serif",
   },
 
   buttonText: {
     fontSize: 20,
     fontWeight: "bold",
     color: "white",
-    fontFamily: "Roboto-MediumItalic",
+    fontFamily: "Roboto",
   },
   button: {
     flexDirection: "row-reverse",
